@@ -778,6 +778,27 @@ img {
         word-break: keep-all; /* Не разрываем слова */
     }
 }
+/* === ТОЛЬКО ДЛЯ ТЕЛЕФОНОВ: мягкий перенос текста === */
+@media (max-width: 768px) {
+    /* Разрешаем перенос длинных слов и эмодзи только на узких экранах */
+    .section-title, .block-title, .comp-title, .anubis-title, .codex-title, .footer-title, .warrior-card h3 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    /* Чуть уменьшаем шрифт заголовков, чтобы они точно влезали */
+    .section-title { font-size: 1.5rem; line-height: 1.3; }
+    .block-title { font-size: 1.2rem; }
+    .anubis-title { font-size: 1.4rem; }
+    .warrior-card h3 { font-size: 1.3rem; }
+
+    /* Чуть уменьшаем боковые отступы у блоков на телефонах */
+    section, .content-block, .anubis-section, .codex, .warrior-card, .comp-card {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
     </style>
 </head>
 <body>
