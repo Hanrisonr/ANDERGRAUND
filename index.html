@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АНДЕРГРАУНД | Smite Manifesto</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Oswald:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blood: #ff003c;
+            --dark: #0a0a0a;
+            --underground: #8a2be2;
+            --gold: #ffd700;
+            --gray: #1a1a1a;
+            --text: #e0e0e0;
+            --shame: #4a0000;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            font-family: 'Oswald', sans-serif;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)),
+                url('tyr.png'); /* Не забудь положить файл tyr.png в папку с сайтом, или замени на свой URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blood);
+            border-radius: 6px;
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            font-family: 'Russo One', sans-serif;
+            font-size: 5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 3px 3px var(--blood), -3px -3px var(--underground);
+            animation: glitch 1.5s infinite;
+            letter-spacing: 5px;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 3px 3px var(--blood), -3px -3px var(--underground); }
+            25% { text-shadow: -3px 3px var(--blood), 3px -3px var(--underground); }
+            50% { text-shadow: 3px -3px var(--blood), -3px 3px var(--underground); }
+            75% { text-shadow: -3px -3px var(--blood), 3px 3px var(--underground); }
+        }
+
+        .a-letter {
+            color: var(--blood);
+            font-size: 6rem;
+            text-shadow: 0 0 20px var(--blood), 0 0 40px var(--blood);
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 40px; /* Исправлен отступ */
+            border-bottom: 5px solid var(--blood);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '⚔️';
+            font-size: 15rem;
+            position: absolute;
+            opacity: 0.03;
+            animation: pulse 3s infinite;
+        }
+
+        .hero-sub {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.75rem;
+            color: var(--gold);
+            margin-top: 30px;
+            line-height: 2;
+            max-width: 900px;
+            text-transform: uppercase;
+        }
+
+        .hero-sub .highlight {
+            color: var(--blood);
+            font-weight: bold;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--blood);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(15px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 40px; /* Исправлен отступ */
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+
+        .section-title.shame {
+            color: var(--blood);
+            text-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
+        }
+
+        .section-title.gold {
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .section-title.purple {
+            color: var(--underground);
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .divider-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blood), transparent);
+        }
+
+        .divider-icon {
+            font-size: 2rem;
+        }
+
+        /* Content Blocks */
+        .content-block {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 2px solid var(--gray);
+            border-left: 5px solid var(--blood);
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .content-block:hover {
+            border-left-color: var(--gold);
+            transform: translateX(5px);
+            box-shadow: 0 0 30px rgba(255, 0, 60, 0.2);
+        }
+
+        .content-block.gold-border {
+            border-left-color: var(--gold);
+        }
+
+        .content-block.gold-border:hover {
+            border-left-color: var(--blood);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .block-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .block-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .block-text strong {
+            color: var(--blood);
+            font-weight: bold;
+        }
+
+        .block-text .gold {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .quote {
+            font-style: italic;
+            border-left: 3px solid var(--underground);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #aaa;
+            font-size: 1.05rem;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .comp-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 2px solid;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .comp-card.shame-card {
+            border-color: var(--shame);
+        }
+
+        .comp-card.shame-card:hover {
+            border-color: var(--blood);
+            box-shadow: 0 0 30px rgba(255, 0, 60, 0.3);
+        }
+
+        .comp-card.glory-card {
+            border-color: var(--gold);
+        }
+
+        .comp-card.glory-card:hover {
+            border-color: var(--underground);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+        }
+
+        .comp-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .comp-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .comp-card.shame-card .comp-title {
+            color: var(--blood);
+        }
+
+        .comp-card.glory-card .comp-title {
+            color: var(--gold);
+        }
+
+        .comp-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .comp-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .comp-list li:last-child {
+            border-bottom: none;
+        }
+
+        .comp-list li::before {
+            content: '▸ ';
+            font-weight: bold;
+        }
+
+        .comp-card.shame-card .comp-list li::before {
+            color: var(--blood);
+        }
+
+        .comp-card.glory-card .comp-list li::before {
+            color: var(--gold);
+        }
+
+        /* Codex */
+        .codex {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border: 2px solid var(--underground);
+            padding: 50px 40px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .codex::before {
+            #content: '⚔️';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            background: var(--dark);
+            padding: 0 20px;
+        }
+
+        .codex-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .codex-list {
+            list-style: none;
+            counter-reset: codex;
+        }
+
+        .codex-list li {
+            counter-increment: codex;
+            padding: 20px 0 20px 60px;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .codex-list li::before {
+            content: counter(codex, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            top: 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--underground);
+        }
+
+        .codex-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Anubis Special */
+        .anubis-section {
+            background: linear-gradient(135deg, rgba(74, 0, 0, 0.3) 0%, rgba(10, 10, 10, 0.95) 100%);
+            border: 3px solid var(--blood);
+            padding: 60px 40px;
+            margin: 50px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .anubis-section::before {
+            content: '💀';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .anubis-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 3rem;
+            color: var(--blood);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
+            position: relative;
+        }
+
+        .stars {
+            font-size: 3rem;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        .stars .filled {
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold);
+        }
+
+        .stars .empty {
+            color: #333;
+        }
+
+        .anubis-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .anubis-text strong {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 80px 40px; /* Исправлен отступ */
+            border-top: 5px solid var(--underground);
+            margin-top: 50px;
+            background: linear-gradient(180deg, var(--dark) 0%, #050505 100%);
+        }
+
+        .footer-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-a {
+            font-size: 4rem;
+            color: var(--blood);
+            text-shadow: 0 0 20px var(--blood);
+            margin: 20px 0;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            section {
+                padding: 60px 20px;
+            }
+            .hero {
+                padding: 20px;
+            }
+            .footer {
+                padding: 60px 20px;
+            }
+            .glitch { font-size: 3rem; }
+            .a-letter { font-size: 4rem; }
+            .section-title { font-size: 2rem; }
+            .comparison { grid-template-columns: 1fr; }
+            .content-block { padding: 25px; }
+            .anubis-section { padding: 40px 20px; }
+            .anubis-title { font-size: 2rem; }
+            .codex { padding: 40px 20px; }
+            .codex-list li { padding-left: 50px; }
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Warrior showcase section */
+        .warrior-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .warrior-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 2px solid var(--gold);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .warrior-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .warrior-card:hover::before {
+            left: 100%;
+        }
+
+        .warrior-card img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 60, 0.3));
+        }
+
+        .warrior-card h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .warrior-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        @media (max-width: 900px) {
+            .warrior-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 class="glitch">
+            АНДЕРГРАУНД<br>
+        </h1>
+        <p class="hero-sub">
+            <span class="highlight">МАГИ — ЭТО ДЕРЬМО.</span><br>
+            АНУБИС С 10 ЗВЁЗДАМИ — ЭТО ПОЗОР.<br>
+            НАСТОЯЩИЕ МУЖЧИНЫ ИГРАЮТ НА ВОИНАХ.<br>
+            <span class="highlight">ТИР И ГЕРКУЛЕС — БОГИ ТАВЕРДАЙВА.</span><br>
+            ЖИВИ ПОД ВЫШКОЙ. УМИРАЙ С МЕЧОМ В РУКЕ.
+        </p>
+        <div class="scroll-hint">▼</div>
+    </section>
+
+    <!-- Anubis Shame Section -->
+    <section class="fade-in">
+        <h2 class="section-title shame">💀 Позор Анубиса с 10 Звёздами 💀</h2>
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">⚡</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="anubis-section">
+            <div class="anubis-title">АНУБИС С 10 ЗВЁЗДАМИ</div>
+            <div class="stars">
+                <span class="filled">★</span><span class="filled">★</span><span class="filled">★</span><span class="filled">★</span><span class="filled">★</span><span class="filled">★</span><span class="filled">★</span><span class="filled">★</span><span class="filled">★</span><span class="filled">★</span>
+            </div>
+            <p class="anubis-text">
+                <strong>10 звёзд на Анубисе — это не достижение. Это приговор.</strong><br><br>
+                Это значит, что ты потратил сотни часов на то, чтобы научиться нажимать четыре кнопки в правильной последовательности, стоя в кусте. Ты выучил все анимации, все тайминги, все комбо. И всё это — чтобы убивать людей, которые не могут до тебя дотянуться.<br><br>
+                <strong>Анубис — это бог для тех, кто боится бога.</strong> Он стоит далеко. Он кидает скиллы из-за спин союзников. Он прячется за танком, как ребёнок за мамой. А когда к нему подходит настоящий воин — он умирает быстрее, чем успевает нажать ульту.<br><br>
+                <strong>10 звёзд на Анубисе = 0 яиц.</strong> Это математика Андеграунда.
+            </p>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Почему Анубис — это позор?</h3>
+            <p class="block-text">
+                Потому что <strong>Анубис не рискует.</strong> Он не идёт в тавердайв. Он не прыгает 1 в 3 под вышку. Он не разворачивает тимфайт одним движением. Он стоит сзади и кидает скиллы, как трус, который боится получить по лицу.
+            </p>
+            <p class="block-text">
+                <strong>Настоящий мужчина</strong> играет на том, кто идёт первым. Кто принимает удар. Кто влетает в толпу врагов и выходит с тройным киллом. Анубис так не умеет. Анубис умеет только фармить миньонов и плакать в чат, когда его убили.
+            </p>
+            <div class="quote">
+                «10 звёзд на Анубисе — это как 10 лет в тренажёрном зале, но только для пальцев. Твоё тело осталось таким же слабым, каким и было.»
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Что думают о тебе, когда видят Анубиса с 10 звёздами?</h3>
+            <p class="block-text">
+                <strong>Враги:</strong> «О, Анубис. Легкий фраг. Он даже убежать не сможет.»<br>
+                <strong>Союзники:</strong> «Опять маг... Кто будет танковать?»<br>
+                <strong>Тиммейты в пати:</strong> «Бро, может на Тире сыграешь?..»<br>
+                <strong>Ты:</strong> «Я же тащу! У меня 15/2!» — да, ты тащишь, потому что стоишь в 50 метрах от драки и кидаешь скиллы в спину врагам, которых уже убили твои союзники.
+            </p>
+            <p class="block-text">
+                <strong>15/0 на Анубисе — это не тащ. Это паразитизм.</strong> Ты живёшь за счёт того, что другие умирают за тебя. Настоящий воин имеет 5/10, но все 10 смертей — это тавердайвы, которые спасли команду.
+            </p>
+        </div>
+    </section>
+
+    <!-- Why Mages Are Shame -->
+    <section class="fade-in">
+        <h2 class="section-title shame">🧙‍♂️ Почему Маги — Это Не Для Мужчин 🧙‍♂️</h2>
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">⚡</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Маг = Стекло</h3>
+            <p class="block-text">
+                Маг в Smite — это <strong>стеклянная пушка.</strong> Много урона, ноль защиты. Один чих от воина — и ты в таверне. Маг не может выдержать удар. Маг не может пойти первым. Маг не может защитить команду. Маг может только <strong>сосать.</strong>
+            </p>
+            <p class="block-text">
+                Настоящий мужчина не прячется. Настоящий мужчина <strong>идёт в лицо врагу.</strong> Он принимает удар. Он стоит между врагом и своей командой. Он умирает, но умирает <strong>с мечом в руке,</strong> а не со скиллом в кусте.
+            </p>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Маг фармит, воин тащит</h3>
+            <p class="block-text">
+                Пока маг фармит миньонов на лайне, <strong>воин умирает под вражеской вышкой,</strong> чтобы дать команде пространство. Пока маг прячется в кусте, <strong>воин делает репозишн</strong> и вытаскивает тимфайт. Пока маг ждёт, пока его защитят, <strong>воин защищает сам.</strong>
+            </p>
+            <div class="quote">
+                «Маг играет в Smite. Воин играет в войну.»
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Маг боится. Воин — нет.</h3>
+            <p class="block-text">
+                Маг боится ганга. Маг боится ассасина. Маг боится воина. Маг боится всего, что может до него дотянуться. <strong>Воин не боится ничего.</strong> Воин сам — ганг. Воин сам — ассасин. Воин — причина, по которой враги прячутся под фениксом.
+            </p>
+            <p class="block-text">
+                <strong>Страх — это выбор.</strong> Маг выбирает страх. Воин выбирает ярость. Андеграунд выбирает только ярость.
+            </p>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="fade-in">
+        <h2 class="section-title gold">⚔️ Маг vs Воин: Правда Лицом К Лицу ⚔️</h2>
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">💀</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="comparison">
+            <div class="comp-card shame-card">
+                <div class="comp-icon">🧙‍♂️</div>
+                <h3 class="comp-title">МАГ</h3>
+                <ul class="comp-list">
+                    <li>Стоит и ждёт</li>
+                    <li>Кидает скиллы из-за спин</li>
+                    <li>Умирает от одного удара</li>
+                    <li>Фармит миньонов, пока команда умирает</li>
+                    <li>Плачет в чат после смерти</li>
+                    <li>Боится тавердайва как огня</li>
+                    <li>Имеет 15/0, но команда проигрывает</li>
+                    <li>Прячется за танком, как за мамой</li>
+                    <li>Не знает, что такое репозишн</li>
+                    <li>Думает, что ульта = скилл</li>
+                </ul>
+            </div>
+
+            <div class="comp-card glory-card">
+                <div class="comp-icon">⚔️</div>
+                <h3 class="comp-title">ВОИН</h3>
+                <ul class="comp-list">
+                    <li>Идёт первым в тимфайт</li>
+                    <li>Принимает удар на себя</li>
+                    <li>Выживает после трёх ультов</li>
+                    <li>Умирает под вышкой, но тащит команду</li>
+                    <li>Смеётся после смерти в тавердайве</li>
+                    <li>Живёт под вражеской вышкой</li>
+                    <li>Имеет 5/10, но команда выигрывает</li>
+                    <li>Сам — танк, сам — дамагер</li>
+                    <li>Делает репозишн как бог</li>
+                    <li>Знает, что лицо врага — лучшая позиция</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tyr & Hercules Showcase -->
+    <section class="fade-in">
+        <h2 class="section-title gold">🔨 Тир и Геркулес: Боги Тавердайва 🔨</h2>
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">🦁</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="warrior-showcase">
+            <div class="warrior-card">
+                <!-- Замени src на свою картинку, если нужно -->
+                <img src="https://dashscope-result-sh.oss-cn-shanghai.aliyuncs.com/1d/91/20260410/1d1a9486/2a43549a-3d02-4e05-bb74-20d980876b89-1.png?Expires=1744336882&OSSAccessKeyId=LTAI5tZ1gq4263mV4bTqQqXx&Signature=8%2F1%2Bx3Q2k2xJ4yJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6zJ7zJ8zJ9zJ0zJ1zJ2zJ3zJ4zJ5zJ6z......" alt="Tyr">
+                <h3>Тир</h3>
+                <p>
+                    <strong>Однорукий бог войны.</strong> Волк Фенрир откусил ему вторую руку — но Тир не стал слабее. Он стал <strong>опаснее.</strong> Одной рукой он держит гигантский меч, которым ломает не только броню врагов, но и их мораль.<br><br>
+                    Тир не просит разрешения войти в тимфайт. Тир просто входит. Когда Тир идёт в тавердайв, вражеские маги начинают молиться — но их боги уже мертвы.
+                </p>
+            </div>
+
+            <div class="warrior-card">
+                <!-- Замени src на свою картинку, если нужно -->
+                <img src="https://dashscope-result-sh.oss-cn-shanghai.aliyuncs.com/1d/91/20260410/1d1a9486/2a43549a-3d02-4e05-bb74-20d980876b89-2.png?Expires=1744336882&OSSAccessKeyId=LTAI5tZ1gq4263mV4bTqQqXx&Signature=..." alt="Hercules">
+                <h3>Геркулес</h3>
+                <p>
+                    <strong>Король отхила.</strong> Огромная дубина в его руках — это не оружие. Это <strong>приговор.</strong> Геркулес закидывает вражеского мага прямо под свою вышку как мешок с картошкой. Комбо Геркулеса ломает не только броню, но и психику вражеского тиммейта.<br><br>
+                    Геркулес не бегает от ганга. Геркулес разворачивается и бьёт первым. Только он может выдержать этот уровень тестостерона.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block gold-border" style="margin-top: 40px;">
+            <h3 class="block-title">Почему именно Тир и Геркулес?</h3>
+            <p class="block-text">
+                Потому что они <strong>не прячутся.</strong> Они не фармят из куста. Они не ждут, пока кто-то другой сделает работу. Они <strong>идут и делают.</strong> Они входят в толпу врагов и выходят с киллами. Они умирают, но умирают <strong>красиво.</strong>
+            </p>
+            <p class="block-text">
+                Тир с одной рукой тащит больше, чем маг с двумя руками и десятью звёздами. Геркулес с дубиной решает вопросы быстрее, чем Анубис со всеми своими комбо. <strong>Это не баг. Это фича настоящего мужчины.</strong>
+            </p>
+            <div class="quote">
+                «Тир потерял руку, но не потерял честь. Маг имеет обе руки, но потерял яйца ещё до начала матча.»
+            </div>
+        </div>
+    </section>
+
+    <!-- Codex -->
+    <section class="fade-in">
+        <h2 class="section-title purple">📜 Кодекс Андеграунда 📜</h2>
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">⚔️</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="codex">
+            <h3 class="codex-title">Заповеди Настоящего Воина</h3>
+            <ul class="codex-list">
+                <li>Ты идёшь первым. Всегда. Без исключений.</li>
+                <li>Ты не боишься тавердайва. Тавердайв боится тебя.</li>
+                <li>Ты умираешь с мечом в руке, а не с хуём в жопе.</li>
+                <li>Ты не фармишь миньонов, пока команда умирает. Ты умираешь, чтобы команда фармила.</li>
+                <li>Ты не плачешь в чат после смерти. Ты смеёшься и идёшь снова.</li>
+                <li>Ты не прячешься за танком. Ты сам — танк.</li>
+                <li>Ты не ждёшь, пока враг ошибётся. Ты заставляешь его ошибаться.</li>
+                <li>Ты не играешь на конченных магах. Никогда. Даже в шутку..</li>
+                <li>Ты играешь на Тире или Геркулесе. Или не играешь вообще.</li>
+                <li>Ты живёшь под вражеской вышкой. Это твой дом.</li>
+                <li>Ты прыгаешь 1 в 3. Потому что 1 в 1 — это для слабаков.</li>
+                <li>Ты не просишь хил. Ты выживаешь на тонкого.</li>
+                <li>Ты должен прыгать под тавер даже с одним хп.</li>
+                <li>Ты не боишься умирать под титаном на 3 лвле. это психологическое давление.</li>
+                <li>Ты — Андеграунд. А не паровоз.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- What Is Underground -->
+    <section class="fade-in">
+        <h2 class="section-title purple">🔥 Что Значит Быть Андеграундом 🔥</h2>
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">💀</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Андеграунд — Это Не Стиль Игры. Это Стиль Жизни.</h3>
+            <p class="block-text">
+                <strong>Андеграунд </strong> — это не просто слово. Это <strong>манифест.</strong> Это образ мышления. Это способ жить в Smite и за его пределами. Андеграунд не играет по мете. Андеграунд <strong>ей подтирается.</strong>
+            </p>
+            <p class="block-text">
+                Андеграунд не фармит. Андеграунд <strong>тащит.</strong> Андеграунд не прячется. Андеграунд <strong>атакует.</strong> Андеграунд не боится. Андеграунд <strong>побеждает.</strong>
+            </p>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Андеграунд Живёт Под Вышкой</h3>
+            <p class="block-text">
+                Настоящий Андеграунд <strong>не существует без вражеской вышки.</strong> Вышка — это его дом. Его трон. Его арена. Он живёт там. Он умирает там. Он воскрешается и идёт туда снова. Потому что <strong>без риска нет победы.</strong>
+            </p>
+            <p class="block-text">
+                Если ты не прыгаешь 1 в 3 под тавер противника — ты <strong>не Андеграунд.</strong> Ты просто игрок, который боится потерять КДА. Андеграунд не боится потерять КДА. Андеграунд боится только одного — <strong>умереть от скуки.</strong>
+            </p>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Андеграунд — Это Братство</h3>
+            <p class="block-text">
+                Андеграунд — это не одиночки. Андеграунд — это <strong>братство воинов.</strong> Братство тех, кто играет на Тире и Геркулесе. Братство тех, кто тащит 1 в 3. Братство тех, кто живёт под вышкой. Братство тех, кто <strong>настоящий.</strong>
+            </p>
+            <p class="block-text">
+                Если ты в пати с тремя другими Андеграундами — вы <strong>непобедимы.</strong> Потому что вы не боитесь. Потому что вы идёте первыми. Потому что вы <strong>настоящие мужчины.</strong>
+            </p>
+            <div class="quote">
+                «Один воин — это сила. Четыре воина — это Андеграунд. Андеграунд — это неизбежность.»
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3 class="block-title">Андеграунд Против Меты</h3>
+            <p class="block-text">
+                Мета говорит: «Играй на магах, они имба.» Андеграунд говорит: <strong>«Мета для слабаков.»</strong> Мета говорит: «Фарми, не рискуй.» Андеграунд говорит: <strong>«Рискни или умри от скуки.»</strong> Мета говорит: «Иди в безопасную позицию.» Андеграунд говорит: <strong>«Безопасная позиция — это под вражеской вышкой.»</strong>
+            </p>
+            <p class="block-text">
+                <strong>Андеграунд не следует мете. Андеграунд создаёт свою мету.</strong> Мету тавердайва. Мету 1 в 3. Мету Тира и Геркулеса. Мету настоящего мужчины.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-a">А</div>
+        <h3 class="footer-title">Играй На Настоящих Мужчинах.<br>Живи Под Вышкой.<br>Будь Андеграундом.</h3>
+        <p class="footer-text">
+            Этот сайт — манифест. Манифест тех, кто играет на Тире и Геркулесе. 
+            Тех, кто тащит 1 в 3. Тех, кто живёт под вражеской вышкой. 
+            Тех, кто настоящий.
+            <br><br>
+            <strong style="color: var(--gold);">АНДЕГРАУНД — НАВСЕГДА.</strong>
+        </p>
+    </footer>
+
+    <script>
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Scroll hint
+        document.querySelector('.scroll-hint').addEventListener('click', () => {
+            document.querySelector('section.fade-in').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Glitch effect randomization
+        const glitch = document.querySelector('.glitch');
+        setInterval(() => {
+            glitch.style.textShadow = `
+                ${Math.random() * 6 - 3}px ${Math.random() * 6 - 3}px var(--blood),
+                ${Math.random() * 6 - 3}px ${Math.random() * 6 - 3}px var(--underground)
+            `;
+        }, 100);
+    </script>
+</body>
+</html>
