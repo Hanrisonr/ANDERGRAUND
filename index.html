@@ -571,6 +571,213 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* Улучшения для мобильных устройств */
+@media (max-width: 768px) {
+    /* Уменьшаем главный заголовок */
+    .glitch {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+    }
+
+    .a-letter {
+        font-size: 3rem;
+    }
+
+    /* Уменьшаем подзаголовок героя */
+    .hero-sub {
+        font-size: 0.65rem;
+        line-height: 1.8;
+    }
+
+    /* Уменьшаем заголовки секций */
+    .section-title {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    /* Уменьшаем блоки контента */
+    .content-block {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .block-title {
+        font-size: 1.4rem;
+    }
+
+    .block-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Уменьшаем карточки сравнения */
+    .comp-card {
+        padding: 25px 20px;
+    }
+
+    .comp-icon {
+        font-size: 3.5rem;
+    }
+
+    .comp-title {
+        font-size: 1.3rem;
+    }
+
+    .comp-list li {
+        font-size: 0.9rem;
+        padding: 8px 0;
+    }
+
+    /* Уменьшаем карточки воинов */
+    .warrior-card {
+        padding: 20px;
+    }
+
+    .warrior-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .warrior-card p {
+        font-size: 0.95rem;
+    }
+
+    /* Уменьшаем секцию Анубиса */
+    .anubis-section {
+        padding: 30px 15px;
+    }
+
+    .anubis-title {
+        font-size: 1.8rem;
+    }
+
+    .stars {
+        font-size: 2rem;
+        letter-spacing: 5px;
+    }
+
+    .anubis-text {
+        font-size: 1rem;
+    }
+
+    /* Уменьшаем кодекс */
+    .codex {
+        padding: 30px 15px;
+    }
+
+    .codex-title {
+        font-size: 1.5rem;
+    }
+
+    .codex-list li {
+        font-size: 0.95rem;
+        padding: 15px 0 15px 45px;
+    }
+
+    /* Уменьшаем футер */
+    .footer-title {
+        font-size: 1.5rem;
+    }
+
+    .footer-a {
+        font-size: 3rem;
+    }
+
+    .footer-text {
+        font-size: 0.9rem;
+    }
+
+    /* Уменьшаем разделители */
+    .divider-line {
+        width: 60px;
+    }
+
+    .divider-icon {
+        font-size: 1.5rem;
+    }
+
+    /* Убираем слишком большие отступы у секций */
+    section {
+        padding: 50px 15px;
+    }
+
+    .hero {
+        padding: 15px;
+    }
+
+    .footer {
+        padding: 50px 15px;
+    }
+}
+
+/* Для очень маленьких экранов (старые телефоны) */
+@media (max-width: 480px) {
+    .glitch {
+        font-size: 2rem;
+    }
+
+    .hero-sub {
+        font-size: 0.6rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .block-title {
+        font-size: 1.2rem;
+    }
+
+    .comp-icon {
+        font-size: 3rem;
+    }
+
+    .anubis-title {
+        font-size: 1.5rem;
+    }
+
+    .stars {
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+    }
+}
+
+/* Фиксы для iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    body {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Убираем горизонтальный скролл */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Делаем картинки адаптивными */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+/* Фикс для эмодзи - не даём им переноситься */
+.section-title,
+.block-title,
+.comp-title,
+.anubis-title,
+.codex-title,
+.footer-title,
+.warrior-card h3 {
+    white-space: nowrap;
+}
+
+/* Для мобильных - разрешаем перенос, но только если очень нужно */
+@media (max-width: 768px) {
+    .section-title {
+        white-space: normal;
+        word-break: keep-all; /* Не разрываем слова */
+    }
+}
     </style>
 </head>
 <body>
